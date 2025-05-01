@@ -2,8 +2,7 @@
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
 {
-    public class RepositorioFornecedor : RepositorioBase<Fornecedor>
+    public interface IRepositorioFornecedor : IRepositorio<Fornecedor>
     {
-
     }
 }
