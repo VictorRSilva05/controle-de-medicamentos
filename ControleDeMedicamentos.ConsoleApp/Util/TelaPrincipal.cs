@@ -1,28 +1,16 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
+using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 public class TelaPrincipal
 {
     public char opcaoPrincipal;  
 
-    //private RepositorioDono repositorioDono;
-    //private TelaDono telaDono;
-
-    //private RepositorioPet repositorioPet;
-    //private TelaPet telaPet;   
+   private TelaFornecedor telaFornecedor;
 
     public TelaPrincipal()
     {
-        /*
-        repositorioDono = new RepositorioDono();
-        Dono novoDono = new Dono("Gabriel Velho");
-        repositorioDono.CadastrarRegistro(novoDono);
-
-        telaDono = new TelaDono("Dono", repositorioDono);
-
-        repositorioPet = new RepositorioPet();
-        repositorioPet.CadastrarRegistro(new Pet("Bob", novoDono));
-
-        telaPet = new TelaPet("Pet", repositorioPet, telaDono, repositorioDono);
-        */
+        ContextoDados contexto = new ContextoDados(true);
+        IRepositorioFornecedor repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
+        telaFornecedor = new TelaFornecedor(repositorioFornecedor);
     }
 
     public void ApresentarMenuPrincipal()
@@ -35,9 +23,7 @@ public class TelaPrincipal
 
         Console.WriteLine();
 
-        Console.WriteLine("1 - Cadastro de Donos");
-        Console.WriteLine("2 - Cadastro de Pets");
-       
+        Console.WriteLine("1 - Cadastro de Fornecedores");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
@@ -47,13 +33,10 @@ public class TelaPrincipal
 
     public ITelaCrud ObterTela()
     {
-        /*
+        
         if (opcaoPrincipal == '1')
-            return telaDono;
+            return telaFornecedor;
 
-        else if (opcaoPrincipal == '2')
-            return telaPet;
-         */
         return null;
  
     }

@@ -2,9 +2,9 @@
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
 {
-    public class TelaFornecedor : TelaBase<Fornecedor>
+    public class TelaFornecedor : TelaBase<Fornecedor>, ITelaCrud
     {
-        public TelaFornecedor(string nomeEntidade, RepositorioBase<Fornecedor> repositorio) : base(nomeEntidade, repositorio)
+        public TelaFornecedor(IRepositorioFornecedor repositorio) : base("Fornecedor", repositorio)
         {
         }
 

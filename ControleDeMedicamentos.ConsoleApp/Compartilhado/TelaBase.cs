@@ -6,9 +6,9 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado;
 public abstract class TelaBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
 {
     protected string nomeEntidade;
-    protected RepositorioBase<TEntidade> repositorio;
+    protected IRepositorio<TEntidade> repositorio;
 
-    protected TelaBase(string nomeEntidade, RepositorioBase<TEntidade> repositorio)
+    protected TelaBase(string nomeEntidade, IRepositorio<TEntidade> repositorio)
     {
         this.nomeEntidade = nomeEntidade;
         this.repositorio = repositorio;
@@ -147,7 +147,7 @@ public abstract class TelaBase<TEntidade> where TEntidade : EntidadeBase<TEntida
 
         ExibirCabecalhoTabela(); //escrita cabeçalho
 
-        TEntidade[] registros = repositorio.SelecionarRegistros();
+        List<TEntidade> registros = repositorio.SelecionarRegistros();
 
         foreach (TEntidade registro in registros)
         {

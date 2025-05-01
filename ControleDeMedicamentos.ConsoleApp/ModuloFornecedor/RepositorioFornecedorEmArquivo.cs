@@ -2,9 +2,9 @@
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
 {
-    public class RepositorioFornecedorEmMemoria : RepositorioBaseEmArquivo<Fornecedor>
+    public class RepositorioFornecedorEmArquivo : RepositorioBaseEmArquivo<Fornecedor>, IRepositorioFornecedor
     {
-        public RepositorioFornecedorEmMemoria(ContextoDados contexto) : base(contexto)
+        public RepositorioFornecedorEmArquivo(ContextoDados contexto) : base(contexto)
         {
         }
 

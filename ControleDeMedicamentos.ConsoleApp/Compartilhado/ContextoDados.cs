@@ -9,13 +9,11 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         private string pastaArmazenamento = "C:\\temp";
         private string arquivoArmazenamento = "dados_medicamentos.json";
 
-        //public List<Paciente> pacientes { get; set; }
         public List<Fornecedor> Fornecedores { get; set; }
 
         public ContextoDados()
         {
             Fornecedores = new List<Fornecedor>();
-            //pacientes = new List<Paciente>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -27,14 +25,14 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         public void Salvar()
         {
             string caminhoCompleto = Path.Combine(pastaArmazenamento, arquivoArmazenamento);
-        
+
             JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
             jsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             jsonSerializerOptions.WriteIndented = true;
 
             string json = JsonSerializer.Serialize(this, jsonSerializerOptions);
 
-            if(!Directory.Exists(pastaArmazenamento))
+            if (!Directory.Exists(pastaArmazenamento))
                 Directory.CreateDirectory(pastaArmazenamento);
 
             File.WriteAllText(caminhoCompleto, json);
@@ -60,7 +58,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             if (contextoArmazenado == null)
                 return;
 
-            //this.Pacientes = contextoArmazenado.Pacientes;
+            Fornecedores = contextoArmazenado.Fornecedores;
         }
     }
 }
