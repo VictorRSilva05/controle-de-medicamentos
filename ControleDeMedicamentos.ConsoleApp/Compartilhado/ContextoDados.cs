@@ -1,4 +1,5 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
+using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -9,11 +10,15 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         private string pastaArmazenamento = "C:\\temp";
         private string arquivoArmazenamento = "dados_medicamentos.json";
 
+        public List<Funcionario> Funcionarios { get; set; }
+
         public List<Fornecedor> Fornecedores { get; set; }
 
         public ContextoDados()
         {
             Fornecedores = new List<Fornecedor>();
+
+            Funcionarios = new List<Funcionario>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -59,6 +64,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
                 return;
 
             Fornecedores = contextoArmazenado.Fornecedores;
+            Funcionarios = contextoArmazenado.Funcionarios;
         }
     }
 }

@@ -1,16 +1,22 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
 using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
+using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
 public class TelaPrincipal
 {
     public char opcaoPrincipal;  
 
    private TelaFornecedor telaFornecedor;
+   private TelaFuncionario telaFuncionario;
 
     public TelaPrincipal()
     {
         ContextoDados contexto = new ContextoDados(true);
         IRepositorioFornecedor repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
         telaFornecedor = new TelaFornecedor(repositorioFornecedor);
+
+        IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmArquivo(contexto);
+        telaFuncionario = new TelaFuncionario(repositorioFuncionario);
+
     }
 
     public void ApresentarMenuPrincipal()
