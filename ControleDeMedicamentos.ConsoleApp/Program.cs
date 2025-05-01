@@ -16,9 +16,6 @@ namespace ControleDeMedicamentos.ConsoleApp
 
                 char opcaoEscolhida = telaSelecionada.ApresentarMenu();
 
-                if (opcaoEscolhida == 'S' || opcaoEscolhida == 's')
-                    break;
-
                 switch (opcaoEscolhida)
                 {
                     case '1':

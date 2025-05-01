@@ -7,7 +7,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
 {
     public class ContextoDados
     {
-        private string pastaArmazenamento = "C:\\temp";
+        private string pastaArmazenamento = "C:\\Temp";
         private string arquivoArmazenamento = "dados_medicamentos.json";
 
         public List<Funcionario> Funcionarios { get; set; }
@@ -46,6 +46,15 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         public void Carregar()
         {
             string caminhoCompleto = Path.Combine(pastaArmazenamento, arquivoArmazenamento);
+
+            if (!File.Exists(caminhoCompleto))
+            {
+                if (!Directory.Exists(pastaArmazenamento))
+                    Directory.CreateDirectory(pastaArmazenamento);
+
+                Salvar();
+                return;
+            }
 
             if (File.Exists(caminhoCompleto))
                 return;
