@@ -1,4 +1,6 @@
 ﻿
+using ControleDeMedicamentos.ConsoleApp.Util;
+
 namespace ControleDeMedicamentos.ConsoleApp.Compartilhado;
 
 public abstract class TelaBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>

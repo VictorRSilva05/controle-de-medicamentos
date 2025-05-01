@@ -1,4 +1,4 @@
-﻿namespace ControleDeMedicamentos.ConsoleApp.Compartilhado;
+﻿namespace ControleDeMedicamentos.ConsoleApp.Util;
 
 public static class Notificador
 {
