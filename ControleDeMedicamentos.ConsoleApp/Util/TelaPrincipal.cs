@@ -30,7 +30,7 @@ public class TelaPrincipal
         Console.Clear();
 
         Console.WriteLine("----------------------------------------");
-        Console.WriteLine("|       Gestão do Petshop do Léo        |");
+        Console.WriteLine("|       Gestão de Medicamentos         |");
         Console.WriteLine("----------------------------------------");
 
         Console.WriteLine();
