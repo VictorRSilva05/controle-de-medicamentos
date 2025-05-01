@@ -48,15 +48,6 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             string caminhoCompleto = Path.Combine(pastaArmazenamento, arquivoArmazenamento);
 
             if (!File.Exists(caminhoCompleto))
-            {
-                if (!Directory.Exists(pastaArmazenamento))
-                    Directory.CreateDirectory(pastaArmazenamento);
-
-                Salvar();
-                return;
-            }
-
-            if (File.Exists(caminhoCompleto))
                 return;
 
             string json = File.ReadAllText(caminhoCompleto);

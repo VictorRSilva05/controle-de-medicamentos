@@ -30,6 +30,7 @@ public class TelaPrincipal
         Console.WriteLine();
 
         Console.WriteLine("1 - Cadastro de Fornecedores");
+        Console.WriteLine("2 - Cadastro de Funcionários");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
@@ -42,6 +43,9 @@ public class TelaPrincipal
         
         if (opcaoPrincipal == '1')
             return telaFornecedor;
+
+        if (opcaoPrincipal == '2')
+            return telaFuncionario;
 
         return null;
  
