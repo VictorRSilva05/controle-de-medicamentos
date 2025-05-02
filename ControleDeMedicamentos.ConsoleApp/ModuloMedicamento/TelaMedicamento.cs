@@ -14,13 +14,12 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
         protected override void ExibirCabecalhoTabela()
         {
             Console.WriteLine("{0, -10} | {1, -20} | {2, -30} | {3, -10} | {4, -20} | {5, -10}", "Id", "Nome", "Descrição", 
-                "Qtd Em estoque", "Fornecedor", "Em falta?");
+                "Qtd", "Fornecedor", "Em falta?");
         }
 
         protected override void ExibirLinhaTabela(Medicamento medicamento)
         {
-            Console.WriteLine("{0, -10} | {1, -20} | {2, -30} | {3, -10} | {4, -20} | {5, -10}", medicamento.Id, medicamento.Nome, medicamento.Descricao, medicamento.QtdEmEstoque
-                , medicamento.Fornecedor.Nome, VerificarQuantidadeEmEstoque(medicamento));
+            Console.WriteLine("{0, -10} | {1, -20} | {2, -30} | {3, -10} | {4, -20} | {5, -10}", medicamento.Id, medicamento.Nome, medicamento.Descricao, medicamento.QtdEmEstoque, medicamento.Fornecedor.Nome, VerificarQuantidadeEmEstoque(medicamento));
         }
 
         protected override Medicamento ObterDados()
