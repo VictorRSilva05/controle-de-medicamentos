@@ -10,7 +10,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada
 
         protected override List<RequisicaoDeEntrada> ObterRegistros()
         {
-            throw new NotImplementedException();
+            return contexto.RequisicoesDeEntrada;
         }
     }
 }

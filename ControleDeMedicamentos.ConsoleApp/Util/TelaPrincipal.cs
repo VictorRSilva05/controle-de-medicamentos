@@ -2,6 +2,7 @@
 using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
+using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada;
 public class TelaPrincipal
 {
     public char opcaoPrincipal;
@@ -9,6 +10,7 @@ public class TelaPrincipal
     private TelaFornecedor telaFornecedor;
     private TelaFuncionario telaFuncionario;
     private TelaMedicamento telaMedicamento;
+    private TelaRequisicaoDeEntrada telaRequisicaoDeEntrada;
 
     public TelaPrincipal()
     {
@@ -21,6 +23,9 @@ public class TelaPrincipal
 
         IRepositorioMedicamento repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contexto);
         telaMedicamento = new TelaMedicamento(repositorioMedicamento, repositorioFornecedor);
+
+        IRepositorioRequisicaoDeEntrada repositorioRequisicao = new RepositorioRequisicaoDeEntradaEmArquivo(contexto);
+        telaRequisicaoDeEntrada = new TelaRequisicaoDeEntrada(repositorioRequisicao, repositorioFuncionario, repositorioMedicamento);
     }
 
     public void ApresentarMenuPrincipal()
@@ -36,6 +41,7 @@ public class TelaPrincipal
         Console.WriteLine("1 - Cadastro de Fornecedores");
         Console.WriteLine("2 - Cadastro de Funcionários");
         Console.WriteLine("3 - Cadastro de Medicamentos");
+        Console.WriteLine("6 - Cadastro de Requisições de entrada");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
@@ -54,6 +60,9 @@ public class TelaPrincipal
 
         if (opcaoPrincipal == '3')
             return telaMedicamento;
+
+        if (opcaoPrincipal == '6')
+            return telaRequisicaoDeEntrada;
 
         return null;
 

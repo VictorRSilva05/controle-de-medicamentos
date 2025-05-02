@@ -49,5 +49,10 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
 
             return erros.Trim(); 
         }
+
+        internal void AdicionarQuantidade(int quantidade)
+        {
+            QtdEmEstoque += quantidade;
+        }
     }
 }

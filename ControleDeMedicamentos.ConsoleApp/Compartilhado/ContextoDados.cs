@@ -1,6 +1,7 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
+using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -14,6 +15,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         public List<Funcionario> Funcionarios { get; set; }
         public List<Fornecedor> Fornecedores { get; set; }
         public List<Medicamento> Medicamentos { get; set; }
+        public List<RequisicaoDeEntrada> RequisicoesDeEntrada { get; set; }
 
         public ContextoDados()
         {
@@ -67,6 +69,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             Fornecedores = contextoArmazenado.Fornecedores;
             Funcionarios = contextoArmazenado.Funcionarios;
             Medicamentos = contextoArmazenado.Medicamentos;
+            RequisicoesDeEntrada = contextoArmazenado.RequisicoesDeEntrada;
         }
     }
 }
