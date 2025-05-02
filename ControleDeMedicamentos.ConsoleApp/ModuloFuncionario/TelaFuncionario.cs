@@ -10,7 +10,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios
 
         protected override void ExibirCabecalhoTabela()
         {
-            Console.WriteLine("{0, -10} | {1, -30} | {2, -20} | {3, -20}", "Id", "Nome", "Telefone", "CPF");
+           
         }
 
         protected override void ExibirLinhaTabela(Funcionario funcionario)

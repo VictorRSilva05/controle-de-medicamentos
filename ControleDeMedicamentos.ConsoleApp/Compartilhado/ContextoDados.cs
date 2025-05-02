@@ -66,6 +66,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
 
             Fornecedores = contextoArmazenado.Fornecedores;
             Funcionarios = contextoArmazenado.Funcionarios;
+            Medicamentos = contextoArmazenado.Medicamentos;
         }
     }
 }
