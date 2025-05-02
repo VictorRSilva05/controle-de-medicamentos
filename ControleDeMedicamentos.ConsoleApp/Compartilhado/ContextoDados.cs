@@ -22,6 +22,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             Fornecedores = new List<Fornecedor>();
             Funcionarios = new List<Funcionario>();
             Medicamentos = new List<Medicamento>();
+            RequisicoesDeEntrada = new List<RequisicaoDeEntrada>();
         }
 
         public ContextoDados(bool carregarDados) : this()
