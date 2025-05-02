@@ -1,4 +1,5 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
+using System.Text.RegularExpressions;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
 
@@ -42,6 +43,9 @@ public class Funcionario : EntidadeBase<Funcionario>
 
         if (string.IsNullOrWhiteSpace(CPF))
             erros += "O campo CPF é obrigatório.\n";
+
+        if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
+            erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.\n";
 
         return erros.Trim();
     }
