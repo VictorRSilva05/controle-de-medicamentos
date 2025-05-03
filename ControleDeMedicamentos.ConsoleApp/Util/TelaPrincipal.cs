@@ -12,7 +12,6 @@ public class TelaPrincipal
     private TelaFuncionario telaFuncionario;
     private TelaMedicamento telaMedicamento;
     private TelaRequisicaoDeEntrada telaRequisicaoDeEntrada;
-    private TelaFornecedor telaFornecedor;
     private TelaPaciente telaPaciente;
 
     public TelaPrincipal()
@@ -61,14 +60,15 @@ public class TelaPrincipal
 
         if (opcaoPrincipal == '1')
             return telaFornecedor;
-        if (opcaoPrincipal == '2')
-            return telaPaciente;
 
         if (opcaoPrincipal == '2')
             return telaFuncionario;
 
         if (opcaoPrincipal == '3')
             return telaMedicamento;
+
+        if (opcaoPrincipal == '4')
+            return telaPaciente;
 
         if (opcaoPrincipal == '6')
             return telaRequisicaoDeEntrada;

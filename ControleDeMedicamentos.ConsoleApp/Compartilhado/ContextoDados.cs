@@ -17,7 +17,6 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         public List<Fornecedor> Fornecedores { get; set; }
         public List<Medicamento> Medicamentos { get; set; }
         public List<RequisicaoDeEntrada> RequisicoesDeEntrada { get; set; }
-
         public List<Paciente> Pacientes { get; set; }
         public ContextoDados()
         {
@@ -74,6 +73,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             Funcionarios = contextoArmazenado.Funcionarios;
             Medicamentos = contextoArmazenado.Medicamentos;
             RequisicoesDeEntrada = contextoArmazenado.RequisicoesDeEntrada;
+            Pacientes = contextoArmazenado.Pacientes;
         }
     }
 }
