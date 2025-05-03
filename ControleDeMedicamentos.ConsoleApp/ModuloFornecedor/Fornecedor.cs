@@ -40,11 +40,11 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             if (Nome.Length > 100)
                 erros += "O campo 'Nome' não pode conter mais de 100 caracteres.\n";
 
-            if (CNPJ.Length < 14 || CNPJ.Length > 14)
-                erros += "O campo CNPJ não foi devidamente escrito certo.\n";
+            //if (CNPJ.Length < 14 || CNPJ.Length > 14)
+            //    erros += "O campo CNPJ não foi devidamente escrito certo.\n";
 
-            if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
-                erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.\n";
+            //if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
+            //    erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.\n";
 
             return erros.Trim();
         }
