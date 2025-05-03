@@ -14,10 +14,10 @@ namespace ControleDeMedicamentos.ConsoleApp
 
                 ITelaCrud telaSelecionada = telaPrincipal.ObterTela();
 
-                char opcaoEscolhida = telaSelecionada.ApresentarMenu();
-
-                if (opcaoEscolhida == 'S' || opcaoEscolhida == 's')
+                if (telaSelecionada == null)
                     break;
+
+                char opcaoEscolhida = telaSelecionada.ApresentarMenu();
 
                 switch (opcaoEscolhida)
                 {

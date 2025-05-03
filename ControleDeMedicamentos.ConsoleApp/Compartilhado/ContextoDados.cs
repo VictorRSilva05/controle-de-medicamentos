@@ -1,4 +1,7 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
+using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
+using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
+using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada;
 using ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -7,14 +10,21 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
 {
     public class ContextoDados
     {
-        private string pastaArmazenamento = "C:\\temp";
+        private string pastaArmazenamento = "C:\\Temp";
         private string arquivoArmazenamento = "dados_medicamentos.json";
 
+        public List<Funcionario> Funcionarios { get; set; }
         public List<Fornecedor> Fornecedores { get; set; }
+        public List<Medicamento> Medicamentos { get; set; }
+        public List<RequisicaoDeEntrada> RequisicoesDeEntrada { get; set; }
+
         public List<Paciente> Pacientes { get; set; }
         public ContextoDados()
         {
             Fornecedores = new List<Fornecedor>();
+            Funcionarios = new List<Funcionario>();
+            Medicamentos = new List<Medicamento>();
+            RequisicoesDeEntrada = new List<RequisicaoDeEntrada>();
             Pacientes = new List<Paciente>();
         }
 
@@ -44,7 +54,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         {
             string caminhoCompleto = Path.Combine(pastaArmazenamento, arquivoArmazenamento);
 
-            if (File.Exists(caminhoCompleto))
+            if (!File.Exists(caminhoCompleto))
                 return;
 
             string json = File.ReadAllText(caminhoCompleto);
@@ -61,6 +71,9 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
                 return;
 
             Fornecedores = contextoArmazenado.Fornecedores;
+            Funcionarios = contextoArmazenado.Funcionarios;
+            Medicamentos = contextoArmazenado.Medicamentos;
+            RequisicoesDeEntrada = contextoArmazenado.RequisicoesDeEntrada;
         }
     }
 }
