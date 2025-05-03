@@ -5,6 +5,7 @@ using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada;
 using ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida;
 
 namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
 {
@@ -18,6 +19,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         public List<Medicamento> Medicamentos { get; set; }
         public List<RequisicaoDeEntrada> RequisicoesDeEntrada { get; set; }
         public List<Paciente> Pacientes { get; set; }
+        public List<RequisicaoDeSaida> RequisicoesDeSaida { get; set; }
         public ContextoDados()
         {
             Fornecedores = new List<Fornecedor>();
@@ -25,6 +27,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             Medicamentos = new List<Medicamento>();
             RequisicoesDeEntrada = new List<RequisicaoDeEntrada>();
             Pacientes = new List<Paciente>();
+            RequisicoesDeSaida = new List<RequisicaoDeSaida>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -74,6 +77,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             Medicamentos = contextoArmazenado.Medicamentos;
             RequisicoesDeEntrada = contextoArmazenado.RequisicoesDeEntrada;
             Pacientes = contextoArmazenado.Pacientes;
+            RequisicoesDeSaida = contextoArmazenado.RequisicoesDeSaida;
         }
     }
 }
