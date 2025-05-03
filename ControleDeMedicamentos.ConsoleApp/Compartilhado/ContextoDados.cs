@@ -1,7 +1,12 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
+using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
+using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada;
+using ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida;
+using ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica;
 
 namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
 {
@@ -11,14 +16,22 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         private string arquivoArmazenamento = "dados_medicamentos.json";
 
         public List<Funcionario> Funcionarios { get; set; }
-
         public List<Fornecedor> Fornecedores { get; set; }
+        public List<Medicamento> Medicamentos { get; set; }
+        public List<RequisicaoDeEntrada> RequisicoesDeEntrada { get; set; }
+        public List<Paciente> Pacientes { get; set; }
+        public List<RequisicaoDeSaida> RequisicoesDeSaida { get; set; }
+        public List<Prescricao> Prescricoes { get; set; }
 
         public ContextoDados()
         {
             Fornecedores = new List<Fornecedor>();
-
             Funcionarios = new List<Funcionario>();
+            Medicamentos = new List<Medicamento>();
+            RequisicoesDeEntrada = new List<RequisicaoDeEntrada>();
+            Pacientes = new List<Paciente>();
+            RequisicoesDeSaida = new List<RequisicaoDeSaida>();
+            Prescricoes = new List<Prescricao>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -48,15 +61,6 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             string caminhoCompleto = Path.Combine(pastaArmazenamento, arquivoArmazenamento);
 
             if (!File.Exists(caminhoCompleto))
-            {
-                if (!Directory.Exists(pastaArmazenamento))
-                    Directory.CreateDirectory(pastaArmazenamento);
-
-                Salvar();
-                return;
-            }
-
-            if (File.Exists(caminhoCompleto))
                 return;
 
             string json = File.ReadAllText(caminhoCompleto);
@@ -74,6 +78,11 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
 
             Fornecedores = contextoArmazenado.Fornecedores;
             Funcionarios = contextoArmazenado.Funcionarios;
+            Medicamentos = contextoArmazenado.Medicamentos;
+            RequisicoesDeEntrada = contextoArmazenado.RequisicoesDeEntrada;
+            Pacientes = contextoArmazenado.Pacientes;
+            RequisicoesDeSaida = contextoArmazenado.RequisicoesDeSaida;
+            Prescricoes = contextoArmazenado.Prescricoes;
         }
     }
 }

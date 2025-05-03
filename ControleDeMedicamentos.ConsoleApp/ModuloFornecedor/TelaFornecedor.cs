@@ -32,5 +32,15 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             Fornecedor fornecedor = new Fornecedor(nome, telefone, cnpj);
             return fornecedor;
         }
+
+        private bool VerificarCNPJExiste(string cnpj)
+        {
+            foreach (var fornecedor in repositorio.SelecionarRegistros())
+            {
+                if (fornecedor.CNPJ == cnpj)
+                    return true;
+            }
+            return false;
+        }
     }
 }

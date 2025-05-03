@@ -67,9 +67,15 @@ public abstract class TelaBase<TEntidade> where TEntidade : EntidadeBase<TEntida
             return;
         }
 
-        repositorio.CadastrarRegistro(novoRegistro);
+        bool conseguiuSalvar = repositorio.CadastrarRegistro(novoRegistro);
 
-        Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
+        if (!conseguiuSalvar)
+        {
+            Notificador.ExibirMensagem("Houve um erro durante o cadastro do registro...", ConsoleColor.Red);
+            return;
+        }
+        else
+            Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
     }
 
     public virtual void EditarRegistro()
