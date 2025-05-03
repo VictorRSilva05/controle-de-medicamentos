@@ -11,5 +11,10 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida
         {
             return contexto.RequisicoesDeSaida;
         }
+
+        protected override bool VerificarRegistroExistente(RequisicaoDeSaida registro)
+        {
+            return false;
+        }
     }
 }

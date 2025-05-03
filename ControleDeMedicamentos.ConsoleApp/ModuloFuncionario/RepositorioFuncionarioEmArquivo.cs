@@ -12,5 +12,10 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios
         {
             return contexto.Funcionarios;
         }
+
+        protected override bool VerificarRegistroExistente(Funcionario registro)
+        {
+            return false;
+        }
     }
 }

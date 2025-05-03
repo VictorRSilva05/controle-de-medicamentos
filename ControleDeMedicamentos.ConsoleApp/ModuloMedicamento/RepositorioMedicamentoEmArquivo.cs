@@ -11,6 +11,10 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
         {
             return contexto.Medicamentos;
         }
+        protected override bool VerificarRegistroExistente(Medicamento registro)
+        {
+            return false;
+        }
     }
     
 }

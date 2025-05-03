@@ -1,5 +1,4 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
-using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 
@@ -12,5 +11,10 @@ public class RepositorioPacienteEmArquivo : RepositorioBaseEmArquivo<Paciente>, 
     protected override List<Paciente> ObterRegistros()
     {
         return contexto.Pacientes;
+    }
+
+    protected override bool VerificarRegistroExistente(Paciente registro)
+    {
+        return false;
     }
 }

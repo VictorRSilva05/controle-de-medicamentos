@@ -26,14 +26,20 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
 
     protected abstract List<T> ObterRegistros();
 
-    public void CadastrarRegistro(T novoRegistro)
+    public bool CadastrarRegistro(T novoRegistro)
     {
         novoRegistro.Id = ++contadorIds;
 
-        registros.Add(novoRegistro);
+        if (VerificarRegistroExistente(novoRegistro))
+            return false;
+        else
+            registros.Add(novoRegistro);
 
         contexto.Salvar();
+        return true;
     }
+
+    protected abstract bool VerificarRegistroExistente(T registro); 
 
     public bool EditarRegistro(int idRegistro, T registroEditado)
     {
