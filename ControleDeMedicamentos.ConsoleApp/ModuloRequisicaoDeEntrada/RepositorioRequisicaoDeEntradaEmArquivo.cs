@@ -12,5 +12,9 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada
         {
             return contexto.RequisicoesDeEntrada;
         }
+        protected override bool VerificarRegistroExistente(RequisicaoDeEntrada registro)
+        {
+            return false;
+        }
     }
 }

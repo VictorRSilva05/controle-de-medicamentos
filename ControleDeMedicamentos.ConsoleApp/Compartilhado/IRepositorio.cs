@@ -2,7 +2,7 @@
 
 public interface IRepositorio<T> where T : EntidadeBase<T>
 {
-    public void CadastrarRegistro(T novoRegistro);
+    public bool CadastrarRegistro(T novoRegistro);
 
     public bool EditarRegistro(int idRegistro, T registroEditado);
 

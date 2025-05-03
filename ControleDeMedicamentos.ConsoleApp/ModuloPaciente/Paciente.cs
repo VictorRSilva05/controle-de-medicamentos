@@ -1,4 +1,5 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
+using System.Text.RegularExpressions;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 
@@ -17,7 +18,9 @@ public class Paciente : EntidadeBase<Paciente>
 
     public override void AtualizarRegistro(Paciente novoPaciente)
     {
-
+        Nome = novoPaciente.Nome;
+        Telefone = novoPaciente.Telefone;
+        Sus = novoPaciente.Sus;
     }
     public override string Validar()
     {
@@ -31,6 +34,12 @@ public class Paciente : EntidadeBase<Paciente>
 
         if (string.IsNullOrWhiteSpace(Sus))
             erros += "O campo do cartão do sus é obrigatório. \n";
+
+        if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
+            erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.\n";
+
+        if (Sus.Length > 15 || Sus.Length < 15)
+            erros += "O campo 'Sus' deve conter 15 caracteres.\n";
 
         return erros.Trim();
     }
