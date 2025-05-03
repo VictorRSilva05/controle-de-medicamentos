@@ -35,9 +35,6 @@ public class Funcionario : EntidadeBase<Funcionario>
         if (string.IsNullOrWhiteSpace(Telefone))
             erros += "O campo Telefone é obrigatório.\n";
 
-        if (Telefone.Length < 12)
-            erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.";
-
         if (CPF.Length < 11 || CPF.Length > 11)
             erros += "O campo CPF não foi devidamente escrito certo.\n";
 
