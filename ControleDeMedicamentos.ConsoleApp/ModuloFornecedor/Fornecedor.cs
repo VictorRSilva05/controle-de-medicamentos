@@ -20,7 +20,6 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             Telefone = registroEditado.Telefone;
             CNPJ = registroEditado.CNPJ;
         }
-
         public override string Validar()
         {
             string erros = "";
