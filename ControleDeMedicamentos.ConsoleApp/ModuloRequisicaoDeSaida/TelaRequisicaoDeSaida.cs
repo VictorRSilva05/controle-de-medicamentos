@@ -2,6 +2,7 @@
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
 using ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 using ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica;
+using ControleDeMedicamentos.ConsoleApp.Util;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida
 {
@@ -53,7 +54,27 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida
             RequisicaoDeSaida requisicaoDeSaida = new RequisicaoDeSaida(paciente,prescricao);
             requisicaoDeSaida.ObterMedicamentos(prescricao.Medicamentos);
 
+            foreach(Medicamento medicamento in requisicaoDeSaida.Medicamentos)
+            {
+                RemoverMedicamentoDoEstoque(medicamento.Id);
+            }
+
             return requisicaoDeSaida;
+        }
+
+        private bool RemoverMedicamentoDoEstoque(int id)
+        {
+            Medicamento medicamento = repositorioMedicamentos.SelecionarRegistroPorId(id);
+            if (medicamento.QtdEmEstoque < 1)
+            {
+                Notificador.ExibirMensagem("Sem estoque!", ConsoleColor.Red);
+                return false;
+            }
+            else
+            {
+                medicamento.QtdEmEstoque -= 1;
+                return true;
+            }
         }
     }
 

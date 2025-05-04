@@ -16,8 +16,8 @@ public class RepositorioMedicamentoEmArquivo : RepositorioBaseEmArquivo<Medicame
     {
         Medicamento medicamentoEncontrado = contexto.Medicamentos.Find(medicamento => medicamento.Nome == registro.Nome)!;
 
-        if (medicamentoEncontrado == null) 
-        { 
+        if (medicamentoEncontrado == null)
+        {
             return false;
         }
 
@@ -28,7 +28,7 @@ public class RepositorioMedicamentoEmArquivo : RepositorioBaseEmArquivo<Medicame
 
             return true;
         }
-
     }
+
 }
 
