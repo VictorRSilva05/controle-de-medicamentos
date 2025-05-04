@@ -83,7 +83,7 @@ dotnet restore
 
 - Executar o projeto compilando em tempo real
 ```
-dotnet run --project ClubeDaLeitura
+dotnet run --project ControleDeMedicamentos
 ```
 
 # Sobre o Projeto
