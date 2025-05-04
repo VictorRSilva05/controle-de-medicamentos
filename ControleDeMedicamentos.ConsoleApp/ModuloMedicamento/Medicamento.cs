@@ -9,6 +9,8 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
         public string Descricao { get; set; }
         public int QtdEmEstoque { get; set; }
         public Fornecedor Fornecedor { get; set; }
+        public string Dosagem { get; set; }
+        public string Periodo { get; set; }
 
 
         public Medicamento(string nome, string descricao, int qtdEmEstoque, Fornecedor fornecedor)
@@ -58,6 +60,12 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
         public override string ToString()
         {
             return Nome;
+        }
+
+        public void ReceitarRemedio(string dosagem, string periodo)
+        {
+            Dosagem = dosagem;
+            Periodo = periodo;
         }
     }
 }
