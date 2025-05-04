@@ -36,6 +36,11 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
                 int medicamentoId = Convert.ToInt32(Console.ReadLine());
 
                 Medicamento medicamento = repositorioMedicamentos.SelecionarRegistroPorId(medicamentoId);
+                if (medicamento == null)
+                {
+                    Console.WriteLine("Medicamento não disponível. Tente novamente.");
+                    continue;
+                }
 
                 Console.Write("Informe a dosagem: ");
                 string dosagem = Console.ReadLine();
