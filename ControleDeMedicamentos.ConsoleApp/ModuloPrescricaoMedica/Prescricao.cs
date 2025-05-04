@@ -1,5 +1,6 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
+using ControleDeMedicamentos.ConsoleApp.ModuloMedicamentosPrescritos;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
 {
@@ -40,6 +41,8 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
             if (CRM.Length > 6)
                 erros += "O campo 'CRM' não pode conter mais de 6 caracteres.\n";
 
+            if (Medicamentos.Count == 0)
+                erros += "É necessário adicionar pelo menos um medicamento.\n";
 
             return erros.Trim();
         }

@@ -36,7 +36,7 @@ public class TelaPrincipal
         telaPaciente = new TelaPaciente(repositorioPaciente);
 
         IRepositorioPrescricao repositorioPrescricao = new RepositorioPrescricaoEmArquivo(contexto);
-        telaPrescricao = new TelaPrescricao(repositorioPrescricao);
+        telaPrescricao = new TelaPrescricao(repositorioPrescricao, repositorioMedicamento);
     }
 
     public void ApresentarMenuPrincipal()
@@ -77,11 +77,11 @@ public class TelaPrincipal
         if (opcaoPrincipal == '4')
             return telaPaciente;
 
-        if (opcaoPrincipal == '5')
-            return telaPrescricao;
-
         if (opcaoPrincipal == '6')
             return telaRequisicaoDeEntrada;
+
+        if (opcaoPrincipal == '7')
+            return telaPrescricao;
 
         return null;
 

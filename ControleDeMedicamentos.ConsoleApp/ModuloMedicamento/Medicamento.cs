@@ -54,5 +54,10 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
         {
             QtdEmEstoque += quantidade;
         }
+
+        public override string ToString()
+        {
+            return Nome;
+        }
     }
 }

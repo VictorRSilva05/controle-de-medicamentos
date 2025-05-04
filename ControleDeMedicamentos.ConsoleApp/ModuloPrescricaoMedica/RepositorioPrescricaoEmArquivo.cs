@@ -17,7 +17,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
         }
 
         protected override bool VerificarRegistroExistente(Prescricao registro)
-        {           
+        {
             return false;
         }
     }

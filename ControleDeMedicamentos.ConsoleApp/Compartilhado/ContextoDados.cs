@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida;
 using ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica;
+using ControleDeMedicamentos.ConsoleApp.ModuloMedicamentosPrescritos;
 
 namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
 {
@@ -22,6 +23,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         public List<Paciente> Pacientes { get; set; }
         public List<RequisicaoDeSaida> RequisicoesDeSaida { get; set; }
         public List<Prescricao> Prescricoes { get; set; }
+        public List<MedicamentosPrescritos> MedicamentosPrescritos { get; set; }
         public ContextoDados()
         {
             Fornecedores = new List<Fornecedor>();
@@ -31,6 +33,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             Pacientes = new List<Paciente>();
             RequisicoesDeSaida = new List<RequisicaoDeSaida>();
             Prescricoes = new List<Prescricao>();
+            MedicamentosPrescritos = new List<MedicamentosPrescritos>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -82,6 +85,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
             Pacientes = contextoArmazenado.Pacientes;
             RequisicoesDeSaida = contextoArmazenado.RequisicoesDeSaida;
             Prescricoes = contextoArmazenado.Prescricoes;
+            MedicamentosPrescritos = contextoArmazenado.MedicamentosPrescritos;
         }
     }
 }
