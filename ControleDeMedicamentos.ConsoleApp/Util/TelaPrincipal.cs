@@ -5,6 +5,7 @@ using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
 using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada;
 using ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 using ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica;
+using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida;
 public class TelaPrincipal
 {
     public char opcaoPrincipal;
@@ -15,8 +16,7 @@ public class TelaPrincipal
     private TelaRequisicaoDeEntrada telaRequisicaoDeEntrada;
     private TelaPaciente telaPaciente;
     private TelaPrescricao telaPrescricao;
-
-
+    private TelaRequisicaoDeSaida telaRequisicaoDeSaida;
     public TelaPrincipal()
     {
         ContextoDados contexto = new ContextoDados(true);
@@ -37,6 +37,9 @@ public class TelaPrincipal
 
         IRepositorioPrescricao repositorioPrescricao = new RepositorioPrescricaoEmArquivo(contexto);
         telaPrescricao = new TelaPrescricao(repositorioPrescricao, repositorioMedicamento);
+
+        IRepositorioRequisicaoDeSaida repositorioRequisicaoDeSaida = new RepositorioRequisicaoDeSaidaEmArquivo(contexto);
+        telaRequisicaoDeSaida = new TelaRequisicaoDeSaida(repositorioRequisicaoDeSaida, repositorioPaciente,repositorioPrescricao, repositorioMedicamento);
     }
 
     public void ApresentarMenuPrincipal()
@@ -53,13 +56,14 @@ public class TelaPrincipal
         Console.WriteLine("2 - Cadastro de Funcionários");
         Console.WriteLine("3 - Cadastro de Medicamentos");
         Console.WriteLine("4 - Cadastro de Pacientes");
+        Console.WriteLine("5 - Cadastro de Requisições de saída");
         Console.WriteLine("6 - Cadastro de Requisições de entrada");
         Console.WriteLine("7 - Cadastro de Prescrições médicas");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();
 
-        EscolhoerOpcao();
+        EscolherOpcao();
     }
 
     public ITelaCrud ObterTela()
@@ -77,6 +81,9 @@ public class TelaPrincipal
         if (opcaoPrincipal == '4')
             return telaPaciente;
 
+        if (opcaoPrincipal == '5')
+            return telaRequisicaoDeSaida;
+
         if (opcaoPrincipal == '6')
             return telaRequisicaoDeEntrada;
 
@@ -87,7 +94,7 @@ public class TelaPrincipal
 
     }
 
-    private void EscolhoerOpcao()
+    private void EscolherOpcao()
     {
         Console.Write("Escolha uma das opções: ");
 

@@ -38,7 +38,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
                 Medicamento medicamento = repositorioMedicamentos.SelecionarRegistroPorId(medicamentoId);
                 if (medicamento == null)
                 {
-                    Console.WriteLine("Medicamento não disponível. Tente novamente.");
+                    Console.WriteLine("Medicamento não encontrado. Tente novamente.");
                     continue;
                 }
 

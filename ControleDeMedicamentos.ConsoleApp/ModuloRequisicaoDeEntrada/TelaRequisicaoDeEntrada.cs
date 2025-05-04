@@ -22,7 +22,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada
 
         protected override void ExibirLinhaTabela(RequisicaoDeEntrada requisicaoDeEntrada)
         {
-            Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -20} | {4, -20}", requisicaoDeEntrada.Id, requisicaoDeEntrada.Data.ToString("dd/MM/yyyy"),
+            Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -20} | {4, -20}", requisicaoDeEntrada.Id, requisicaoDeEntrada.Data.ToShortDateString(),
                 requisicaoDeEntrada.Medicamento.Nome, requisicaoDeEntrada.Funcionario.Nome, requisicaoDeEntrada.Quantidade);
         }
 
