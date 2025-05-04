@@ -7,7 +7,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida;
 using ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica;
-using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida;
 
 namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
 {
@@ -22,6 +21,7 @@ namespace ControleDeMedicamentos.ConsoleApp.Compartilhado
         public List<RequisicaoDeEntrada> RequisicoesDeEntrada { get; set; }
         public List<Paciente> Pacientes { get; set; }
         public List<RequisicaoDeSaida> RequisicoesDeSaida { get; set; }
+        public List<Prescricao> Prescricoes { get; set; }
         public ContextoDados()
         {
             Fornecedores = new List<Fornecedor>();

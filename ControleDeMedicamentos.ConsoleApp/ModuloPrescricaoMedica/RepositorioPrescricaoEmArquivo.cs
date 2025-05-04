@@ -17,16 +17,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
         }
 
         protected override bool VerificarRegistroExistente(Prescricao registro)
-        {
-            foreach (Medicamento medicamento in registro.Medicamentos)
-            {
-                if (medicamento.Id == null)
-                {
-                    return false;
-                }
-                else
-                    return true;
-            }
+        {           
             return false;
         }
     }

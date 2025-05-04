@@ -1,5 +1,4 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
-using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
@@ -22,23 +21,37 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
             Console.WriteLine("{0, -10} | {1, -20} | {5, -10}", prescricao.Id, prescricao.CRM, prescricao.Data);
         }
 
-        protected Prescricao ObterDados(List<Medicamento> medicamentos)
+        protected override Prescricao ObterDados()
         {
-            Console.Write("Digite o CRM: ");
-            string nome = Console.ReadLine()!;
+            Console.Write("Informe o CRM: ");
+            string cRM = Console.ReadLine();
 
-            Console.Write("Digite a Data: ");
-            string data = Console.ReadLine()!;
+            DateTime data = DateTime.Now;
 
-            Console.Write("informe o id do Medicamento: ");
-            int idMedicamento = Convert.ToInt32(Console.ReadLine()!);
+            List<MedicamentosPrescritos> medicamentos = new List<MedicamentosPrescritos>();
+            while (true)
+            {
+                Console.Write("Informe o Id do medicamento: ");
+                int idMedicamento = Convert.ToInt32(Console.ReadLine());
+                Medicamento medicamento = repositorioMedicamento.SelecionarRegistroPorId(idMedicamento);
 
+                Console.Write("Informe a dosagem: ");
+                string dosagem = Console.ReadLine();
 
-       
+                Console.Write("Informe o período: ");
+                string periodo = Console.ReadLine();
 
-            Medicamento Prescricao = repositorioMedicamento.SelecionarRegistroPorId(idMedicamento);
+                MedicamentosPrescritos medicamentoPrescrito = new MedicamentosPrescritos(medicamento, dosagem, periodo);
+                medicamentos.Add(medicamentoPrescrito);
 
-            return Prescricao;
+                Console.Write("Deseja adicionar mais medicamentos? (s/n): ");
+                string resposta = Console.ReadLine();
+                if (resposta.ToLower() != "s")
+                    break;
+            }
+
+            Prescricao prescricao = new Prescricao(cRM, data, medicamentos);
+            return prescricao;
         }
     }
 }

@@ -7,13 +7,13 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
     {
         public string CRM { get; set; }
         public DateTime Data { get; set; }
-        public List<Medicamento> Medicamentos { get; set; }
+        public List<MedicamentosPrescritos> Medicamentos { get; set; }
 
-        public Prescricao(string nome, DateTime data, List<Medicamento> medicamentos)
+        public Prescricao(string cRM, DateTime data, List<MedicamentosPrescritos> medicamentos)
         {
-            CRM = nome;
+            CRM = cRM;
             Data = data;
-            Medicamentos = new List<Medicamento>(medicamentos);
+            Medicamentos = medicamentos;
         }
 
         public Prescricao()
