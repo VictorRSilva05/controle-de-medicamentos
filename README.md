@@ -3,25 +3,25 @@
 ![Controle De Medicamentos](https://i.imgur.com/rt0n0bi.gif)
 
 
-## Introdução
-Se você está precisando de algo para gerenciar o estoque dos seus medicamentos, gerenciar
-prescrições médicas, etc... É exatamente aqui que você pode encontrar esse programa.
+## IntroduÃ§Ã£o
+Se vocÃª estÃ¡ precisando de algo para gerenciar o estoque dos seus medicamentos, gerenciar
+prescriÃ§Ãµes mÃ©dicas, etc... Ã‰ exatamente aqui que vocÃª pode encontrar esse programa.
 
-Permitindo que você gerencie com precisão seus medicamentos, pacientes, prescrições.
-Armazenando as informações no seu próprio computador com arquivos Json.
+Permitindo que vocÃª gerencie com precisÃ£o seus medicamentos, pacientes, prescriÃ§Ãµes.
+Armazenando as informaÃ§Ãµes no seu prÃ³prio computador com arquivos Json.
 
 ## Como Usar
-1. Menu principal contém as seguintes opções:
+1. Menu principal contÃ©m as seguintes opÃ§Ãµes:
    - *Gerenciar Fornecedores:*
       - Cadastrar Fornecedor
       - Editar Fornecedor
       - Excluir Fornecedor
       - Visualizar Fornecedores
-   - *Gerenciar Funcionários:* 
-      - Registrar Funcionário
-      - Editar Funcionário
-      - Excluir Funcionário
-      - Visualizar Funcionários
+   - *Gerenciar FuncionÃ¡rios:* 
+      - Registrar FuncionÃ¡rio
+      - Editar FuncionÃ¡rio
+      - Excluir FuncionÃ¡rio
+      - Visualizar FuncionÃ¡rios
    - *Gerenciar Medicamentos:*
       - Registrar Medicamento
       - Editar Medicamento
@@ -32,34 +32,34 @@ Armazenando as informações no seu próprio computador com arquivos Json.
       - Editar Paciente
       - Excluir Paciente
       - Visualizar Pacientes
-   - *Gerenciar Prescrições Médicas:*
-      - Registrar Prescrições Médica
-      - Editar Prescrições Médica
-      - Excluir Prescrições Médica
-      - Visualizar Prescrições Médicas
-   - *Gerenciar Requisições de entrada e saída:*
-      - Registrar Requisições de entrada e saída
+   - *Gerenciar PrescriÃ§Ãµes MÃ©dicas:*
+      - Registrar PrescriÃ§Ãµes MÃ©dica
+      - Editar PrescriÃ§Ãµes MÃ©dica
+      - Excluir PrescriÃ§Ãµes MÃ©dica
+      - Visualizar PrescriÃ§Ãµes MÃ©dicas
+   - *Gerenciar RequisiÃ§Ãµes de entrada e saÃ­da:*
+      - Registrar RequisiÃ§Ãµes de entrada e saÃ­da
       - Editar ambos os tipos
       - Excluir ambos os tipos
       - Visualizar ambos os tipos
 
-Os dados são validados para garantia de que estão corretos
+Os dados sÃ£o validados para garantia de que estÃ£o corretos
 
 ## Requisitos
 
-- .NET 9.0 para compilação e execução do projeto.
+- .NET 9.0 para compilaÃ§Ã£o e execuÃ§Ã£o do projeto.
 
 ## Funcionalidades
 
-- Não permite cadastro de pacientes com CNPJ igual ao já cadastrado;
-- Não permite cadastrar pacientes com o mesmo cartão SUS;
-- Destaca medicamentos, declarando se estão "Em Falta" ou "Disponível";
+- NÃ£o permite cadastro de pacientes com CNPJ igual ao jÃ¡ cadastrado;
+- NÃ£o permite cadastrar pacientes com o mesmo cartÃ£o SUS;
+- Destaca medicamentos, declarando se estÃ£o "Em Falta" ou "DisponÃ­vel";
 - Atualiza automaticamente a quantidade de medicamentos caso seja cadastrado com mesmo nome;
-- Não permite que requisições excedam o estoque disponível;
-- Subtrai automaticamente a quantidade de estoque ao registrar a requisição;
+- NÃ£o permite que requisiÃ§Ãµes excedam o estoque disponÃ­vel;
+- Subtrai automaticamente a quantidade de estoque ao registrar a requisiÃ§Ã£o;
 - Valida a disponibilidade dos medicamentos no estoque;
-- Alerta quando a prescrição excede os limites permitidos;
-- Exige prescrição válida para requisições de saída;
+- Alerta quando a prescriÃ§Ã£o excede os limites permitidos;
+- Exige prescriÃ§Ã£o vÃ¡lida para requisiÃ§Ãµes de saÃ­da;
 - Armazena os dados em arquivos Json.
  
 ## Tecnologias
@@ -67,24 +67,24 @@ Os dados são validados para garantia de que estão corretos
 [![Tecnologias](https://skillicons.dev/icons?i=git,github,visualstudio,cs,dotnet)](https://skillicons.dev)
 
 ## Como Utilizar
-1. *Clone o Repositório:*
-
+1. *Clone o RepositÃ³rio:*
+```
 git clone https://github.com/P-S-T-Partido-Socialista-do-Thiagao/ControleDeMedicamentos
+```
 
+2. Abra o terminal ou prompt de comando e navegue atÃ© a pasta raiz do programa.
 
-2. Abra o terminal ou prompt de comando e navegue até a pasta raiz do programa.
-
-3. Utilize o comando abaixo para restaurar as dependências do projeto.
-
+3. Utilize o comando abaixo para restaurar as dependÃªncias do projeto.
+```
 dotnet restore
-
+```
 
 4. Compile e execute o arquivo .exe do programa.
 
 - Executar o projeto compilando em tempo real
-
+```
 dotnet run --project ClubeDaLeitura
-
+```
 
 # Sobre o Projeto
 
