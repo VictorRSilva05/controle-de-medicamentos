@@ -79,7 +79,7 @@ git clone https://github.com/P-S-T-Partido-Socialista-do-Thiagao/ControleDeMedic
 dotnet restore
 ```
 
-4. Compile e execute o arquivo .exe do programa.
+4. Compile e execute
 
 - Executar o projeto compilando em tempo real
 ```
