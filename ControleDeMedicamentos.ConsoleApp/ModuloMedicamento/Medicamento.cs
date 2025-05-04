@@ -46,10 +46,10 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
             if (QtdEmEstoque < 0)
                 erros += "O campo QtdEmEstoque não pode ser menor que 0.\n";
 
-            if(this.Fornecedor == null)
+            if (this.Fornecedor == null)
                 erros += "O campo Fornecedor é obrigatório.\n";
 
-            return erros.Trim(); 
+            return erros.Trim();
         }
 
         internal void AdicionarQuantidade(int quantidade)
@@ -59,7 +59,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
 
         public override string ToString()
         {
-            return Nome;
+            return Nome + " - " + Dosagem + " - " + Periodo;
         }
 
         public void ReceitarRemedio(string dosagem, string periodo)
