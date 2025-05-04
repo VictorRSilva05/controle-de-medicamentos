@@ -59,6 +59,8 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida
                 RemoverMedicamentoDoEstoque(medicamento.Id);
             }
 
+            paciente.AdicionarRequisicao(requisicaoDeSaida);
+
             return requisicaoDeSaida;
         }
 

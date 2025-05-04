@@ -1,4 +1,5 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
+using ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida;
 using System.Text.RegularExpressions;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
@@ -8,12 +9,18 @@ public class Paciente : EntidadeBase<Paciente>
     public string Nome { get; set; }
     public string Telefone { get; set; }
     public string Sus {  get; set; }
+    public List<RequisicaoDeSaida> Requisicoes { get; set; }
 
     public Paciente(string nome, string telefone, string sus)
     {
         Nome = nome;
         Telefone = telefone;
         Sus = sus;
+        Requisicoes = new List<RequisicaoDeSaida>();
+    }
+
+    public Paciente()
+    {
     }
 
     public override void AtualizarRegistro(Paciente novoPaciente)
@@ -44,5 +51,9 @@ public class Paciente : EntidadeBase<Paciente>
         return erros.Trim();
     }
 
+    public void AdicionarRequisicao(RequisicaoDeSaida requisicao)
+    {
+        Requisicoes.Add(requisicao);
+    }
 
 }
