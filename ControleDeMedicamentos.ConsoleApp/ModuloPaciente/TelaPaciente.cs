@@ -16,27 +16,25 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud
     protected override void ExibirLinhaTabela(Paciente paciente)
     {
         string requisicoes = "";
+
         if (paciente.Requisicoes.Count <= 0)
-        {
             requisicoes = "Nenhuma";
-        }
         else
-        {
             requisicoes = string.Join(", ", paciente.Requisicoes.Select(r => r.Id));
-        }
+ 
         Console.WriteLine("{0, -10} | {1, -30} | {2, -20} | {3, -20} | {4, -10}", paciente.Id, paciente.Nome, paciente.Telefone, paciente.Sus, requisicoes);
     }
 
     protected override Paciente ObterDados()
     {
         Console.Write("Digite o nome: ");
-        string nome = Console.ReadLine() ?? string.Empty;
+        string nome = Console.ReadLine()!;
 
         Console.Write("Digite o telefone: ");
-        string telefone = Console.ReadLine() ?? string.Empty;
+        string telefone = Console.ReadLine()!;
 
         Console.Write("Digite o número do cartão SUS: ");
-        string sus = Console.ReadLine() ?? string.Empty;
+        string sus = Console.ReadLine()!;
 
         Paciente paciente = new Paciente(nome, telefone, sus);
         return paciente;
