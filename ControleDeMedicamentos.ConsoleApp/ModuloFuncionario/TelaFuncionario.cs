@@ -8,6 +8,11 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios
         {
         }
 
+        public void VisualizarRegistroPorId()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void ExibirCabecalhoTabela()
         {
             Console.WriteLine("{0, -6} | {1, -25} | {2, -20} | {3, -20}", "Id", "Nome", "Telefone", "CPF");

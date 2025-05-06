@@ -1,4 +1,5 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
+using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
 using System.Text.RegularExpressions;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
@@ -8,7 +9,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
         public string Nome { get; set; }
         public string Telefone { get; set; }
         public string CNPJ { get; set; }
-        
+        public List<Medicamento> Medicamentos { get; set; } = new List<Medicamento>();
 
         public Fornecedor(string nome, string telefone, string cnpj)
         {
@@ -16,6 +17,11 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             Telefone = telefone;
             CNPJ = cnpj;
         }
+
+        public Fornecedor()
+        {
+        }
+
         public override void AtualizarRegistro(Fornecedor registroEditado)
         {
             Nome = registroEditado.Nome;
@@ -50,5 +56,14 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             return erros.Trim();
         }
 
+
+        public void AdicionarMedicamento(Medicamento medicamento)
+        {
+            if (Medicamentos == null)
+                Medicamentos = new List<Medicamento>();
+
+            if (!Medicamentos.Contains(medicamento))
+                Medicamentos.Add(medicamento);
+        }
     }
 }

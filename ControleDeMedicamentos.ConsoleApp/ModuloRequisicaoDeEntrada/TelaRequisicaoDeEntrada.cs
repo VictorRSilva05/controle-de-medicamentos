@@ -15,6 +15,11 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeEntrada
             this.repositorioMedicamento = repositorioMedicamento;
         }
 
+        public void VisualizarRegistroPorId()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void ExibirCabecalhoTabela()
         {
             Console.WriteLine("{0, -10} | {1, -10} | {2, -20} | {3, -20} | {4, -20}", "Id", "Data", "Medicamento", "Funcionario", "Quantidade");
