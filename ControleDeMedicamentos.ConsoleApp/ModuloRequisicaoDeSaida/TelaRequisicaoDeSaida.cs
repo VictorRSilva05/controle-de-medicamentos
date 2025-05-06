@@ -75,6 +75,10 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida
             else
             {
                 medicamento.QtdEmEstoque -= 1;
+
+                if(medicamento.QtdEmEstoque < 20)
+                    Notificador.ExibirMensagem($"Medicamento {medicamento.Nome} com estoque baixo!", ConsoleColor.Yellow);
+
                 return true;
             }
         }
