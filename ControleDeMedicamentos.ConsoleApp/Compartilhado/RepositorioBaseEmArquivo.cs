@@ -50,7 +50,6 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
                 item.AtualizarRegistro(registroEditado);
 
                 contexto.Salvar();
-
                 return true;
             }
         }
@@ -89,6 +88,4 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
 
         return null;
     }
-
-    
 }

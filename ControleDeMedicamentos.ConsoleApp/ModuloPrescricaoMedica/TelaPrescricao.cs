@@ -11,6 +11,11 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPrescricaoMedica
             this.repositorioMedicamentos = repositorioMedicamentos;
         }
 
+        public void VisualizarRegistroPorId()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void ExibirCabecalhoTabela()
         {
             Console.WriteLine("{0, -6} | {1, -7} | {2, -10} | {3, -50}", "Id", "CRM", "Data", "Prescrição");
