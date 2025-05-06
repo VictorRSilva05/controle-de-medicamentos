@@ -11,6 +11,11 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
             this.repositorioFornecedor = repositorioFornecedor;
         }
 
+        public void VisualizarRegistroPorId()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void ExibirCabecalhoTabela()
         {
             Console.WriteLine("{0, -10} | {1, -20} | {2, -30} | {3, -10} | {4, -20} | {5, -10}", "Id", "Nome", "Descrição", 

@@ -8,6 +8,11 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud
     {
     }
 
+    public void VisualizarRegistroPorId()
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void ExibirCabecalhoTabela()
     {
         Console.WriteLine("{0, -10} | {1, -30} | {2, -20} | {3, -20} | {4, -10}", "Id", "Nome", "Telefone", "Cartão SUS", "Requisições");

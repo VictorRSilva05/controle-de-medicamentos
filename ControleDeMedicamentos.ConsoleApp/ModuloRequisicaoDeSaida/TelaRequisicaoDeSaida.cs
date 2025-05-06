@@ -82,6 +82,58 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloRequisicaoDeSaida
                 return true;
             }
         }
+
+        public override char ApresentarMenu()
+        {
+            ExibirCabecalho();
+
+            Console.WriteLine();
+
+            Console.WriteLine($"1 - Cadastrar {nomeEntidade}");
+            Console.WriteLine($"2 - Editar {nomeEntidade}");
+            Console.WriteLine($"3 - Excluir {nomeEntidade}");
+            Console.WriteLine($"4 - Visualizar {nomeEntidade}s");
+            Console.WriteLine($"5 - Visualizar {nomeEntidade} por paciente");
+
+            Console.WriteLine("S - Voltar");
+
+            Console.WriteLine();
+
+            Console.Write("Escolha uma das opções: ");
+            char operacaoEscolhida = Convert.ToChar(Console.ReadLine()!);
+
+            return operacaoEscolhida;
+        }
+
+        public void VisualizarRegistroPorId()
+        {
+            Console.Write("Insira o id do paciente: ");
+            int idPaciente = Convert.ToInt32(Console.ReadLine())!;
+
+            Paciente paciente = repositorioPaciente.SelecionarRegistroPorId(idPaciente);
+
+            if (paciente == null)
+            {
+                Console.WriteLine("Paciente não encontrado.");
+                return;
+            }
+
+            Console.WriteLine("Visualizando os " + nomeEntidade + "s");
+
+            ExibirCabecalhoTabela(); //escrita cabeçalho
+
+            List<RequisicaoDeSaida> registros = repositorio.SelecionarRegistros();
+
+            registros = registros.FindAll(r => r.Paciente.Id == paciente.Id);
+
+            foreach (RequisicaoDeSaida registro in registros)
+            {
+                if (registro != null)
+                    ExibirLinhaTabela(registro); //escrita da linha
+            }
+
+            Console.ReadLine();
+        }
     }
 
 }

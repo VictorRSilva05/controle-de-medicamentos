@@ -33,6 +33,9 @@ namespace ControleDeMedicamentos.ConsoleApp
                     case '4':
                         telaSelecionada.VisualizarRegistros(true);
                         break;
+                    case '5':
+                        telaSelecionada.VisualizarRegistroPorId();
+                        break;
 
                     default:
                         break;

@@ -80,5 +80,9 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             }
         }
 
+        public void VisualizarRegistroPorId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

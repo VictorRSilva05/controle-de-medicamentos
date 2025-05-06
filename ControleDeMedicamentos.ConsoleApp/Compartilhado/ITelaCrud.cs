@@ -7,4 +7,5 @@ public interface ITelaCrud
     void EditarRegistro();
     void ExcluirRegistro();
     void VisualizarRegistros(bool v);
+    void VisualizarRegistroPorId();
 }
