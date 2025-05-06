@@ -1,4 +1,5 @@
 ﻿
+using ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 using ControleDeMedicamentos.ConsoleApp.Util;
 
 namespace ControleDeMedicamentos.ConsoleApp.Compartilhado;
@@ -93,7 +94,7 @@ public abstract class TelaBase<TEntidade> where TEntidade : EntidadeBase<TEntida
         Console.WriteLine();
 
         TEntidade registroEditado = ObterDados();
-
+        
         string erros = registroEditado.Validar();
 
         if (erros.Length > 0)
