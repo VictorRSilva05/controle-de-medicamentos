@@ -42,11 +42,11 @@ public class Paciente : EntidadeBase<Paciente>
         if (string.IsNullOrWhiteSpace(Sus))
             erros += "O campo do cartão do sus é obrigatório. \n";
 
-        //if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
-        //    erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.\n";
+        if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
+            erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.\n";
 
-        //if (Sus.Length > 15 || Sus.Length < 15)
-        //    erros += "O campo 'Sus' deve conter 15 caracteres.\n";
+        if (Sus.Length > 15 || Sus.Length < 15)
+            erros += "O campo 'Sus' deve conter 15 caracteres.\n";
 
         return erros.Trim();
     }
