@@ -39,6 +39,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
             Fornecedor fornecedor = repositorioFornecedor.SelecionarRegistroPorId(idFornecedor);
 
             Medicamento medicamento = new Medicamento(nome, descricao, qtdEmEstoque, fornecedor);
+            fornecedor.AdicionarMedicamento(medicamento);
             return medicamento;
         }
 

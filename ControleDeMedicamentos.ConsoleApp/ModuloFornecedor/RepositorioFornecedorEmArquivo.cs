@@ -14,6 +14,8 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             return contexto.Fornecedores;
         }
 
+        
+
         protected override bool VerificarRegistroExistente(Fornecedor registro)
         {
             foreach (Fornecedor fornecedor in ObterRegistros())
@@ -26,5 +28,6 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             }
             return false;
         }
+       
     }
 }
