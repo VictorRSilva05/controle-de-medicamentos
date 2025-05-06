@@ -1,4 +1,5 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
+using ControleDeMedicamentos.ConsoleApp.Util;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloPaciente;
 
@@ -38,6 +39,57 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaCrud
 
         Paciente paciente = new Paciente(nome, telefone, sus);
         return paciente;
+    }
+
+    public override void EditarRegistro()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine($"Editando {nomeEntidade}...");
+        Console.WriteLine("----------------------------------------");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.Write("Digite o ID do registro que deseja selecionar: ");
+        int idRegistro = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        Paciente registroEditado = ObterDados();
+
+        string erros = registroEditado.Validar();
+
+        if (erros.Length > 0)
+        {
+            Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+
+            EditarRegistro();
+
+            return;
+        }
+
+        foreach (Paciente registro in repositorio.SelecionarRegistros())
+        {
+            if (registro.Sus == registroEditado.Sus)
+            {
+                Notificador.ExibirMensagem("Cartão Sus já existente", ConsoleColor.Red);
+
+                return;
+            }
+        }
+
+        bool conseguiuEditar = repositorio.EditarRegistro(idRegistro, registroEditado);
+
+        if (!conseguiuEditar)
+        {
+            Notificador.ExibirMensagem("Houve um erro durante a edição do registro...", ConsoleColor.Red);
+
+            return;
+        }
+
+        Notificador.ExibirMensagem("O registro foi editado com sucesso!", ConsoleColor.Green);
     }
 
 }
