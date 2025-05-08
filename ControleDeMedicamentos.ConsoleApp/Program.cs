@@ -6,41 +6,40 @@ namespace ControleDeMedicamentos.ConsoleApp
     {
         static void Main(string[] args)
         {
-            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-            while (true)
-            {
-                telaPrincipal.ApresentarMenuPrincipal();
+            WebApplication app = builder.Build();
 
-                ITelaCrud telaSelecionada = telaPrincipal.ObterTela();
+            app.MapGet("/", PaginaInicial);
+            app.MapGet("/fornecedores/visualizar", VisualizarFornecedores);
+            app.MapGet("/medicamentos/visualizar", VisualizarMedicamentos);
+            app.MapGet("/funcionarios/visualizar", VisualizarFuncionarios);
 
-                if (telaSelecionada == null)
-                    break;
+            app.Run();
+        }
 
-                char opcaoEscolhida = telaSelecionada.ApresentarMenu();
+        static Task PaginaInicial(HttpContext context)
+        {
+            string conteudo = File.ReadAllText("Compartilhado/Html/PaginaInicial.html");
+            return context.Response.WriteAsync(conteudo);
+        }
 
-                switch (opcaoEscolhida)
-                {
-                    case '1':
-                        telaSelecionada.CadastrarRegistro();
-                        break;
-                    case '2':
-                        telaSelecionada.EditarRegistro();
-                        break;
-                    case '3':
-                        telaSelecionada.ExcluirRegistro();
-                        break;
-                    case '4':
-                        telaSelecionada.VisualizarRegistros(true);
-                        break;
-                    case '5':
-                        telaSelecionada.VisualizarRegistroPorId();
-                        break;
+        static Task VisualizarFornecedores(HttpContext context)
+        {
+            string conteudo = File.ReadAllText("ModuloFornecedor/Html/Visualizar.html");
+            return context.Response.WriteAsync(conteudo);
+        }
 
-                    default:
-                        break;
-                }
-            }
+        static Task VisualizarMedicamentos(HttpContext context)
+        {
+            string conteudo = File.ReadAllText("ModuloMedicamento/Html/Visualizar.html");
+            return context.Response.WriteAsync(conteudo);
+        }
+
+        static Task VisualizarFuncionarios(HttpContext context)
+        {
+            string conteudo = File.ReadAllText("ModuloFuncionario/Html/Visualizar.html");
+            return context.Response.WriteAsync(conteudo);
         }
     }
 }
