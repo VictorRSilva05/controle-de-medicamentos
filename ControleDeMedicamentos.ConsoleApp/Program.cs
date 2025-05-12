@@ -1,6 +1,7 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
 using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 using ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
+using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
 using System.Text;
 
 namespace ControleDeMedicamentos.ConsoleApp
@@ -24,6 +25,12 @@ namespace ControleDeMedicamentos.ConsoleApp
             app.MapPost("/fornecedores/excluir/{id:int}", ExcluirFornecedor);
 
             app.MapGet("/medicamentos/visualizar", VisualizarMedicamentos);
+            app.MapGet("/medicamentos/cadastrar", ExibirFormularioCadastroMedicamento);
+            app.MapPost("/medicamentos/cadastrar", CadastrarMedicamento);
+            app.MapGet("/medicamentos/editar/{id:int}", ExibirFormularioEdicaoMedicamento);
+            app.MapPost("/medicamentos/editar/{id:int}", EditarMedicamento);
+            app.MapGet("/medicamentos/excluir/{id:int}", ExibirFormularioExclusaoMedicamento);
+            app.MapPost("/medicamentos/excluir/{id:int}", ExcluirMedicamento);
 
             app.MapGet("/funcionarios/visualizar", VisualizarFuncionarios);
             app.MapGet("/funcionarios/cadastrar", ExibirFormularioCadastroFuncionario);
@@ -34,6 +41,130 @@ namespace ControleDeMedicamentos.ConsoleApp
             app.MapPost("/funcionarios/excluir/{id:int}", ExcluirFuncionario);
 
             app.Run();
+        }
+
+        static Task ExcluirMedicamento(HttpContext context)
+        {
+            int id = Convert.ToInt32(context.GetRouteValue("id"));
+            ContextoDados contexto = new ContextoDados(true);
+            IRepositorioMedicamento repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contexto);
+
+            repositorioMedicamento.ExcluirRegistro(id);
+
+            string conteudo = File.ReadAllText("Compartilhado/Html/Notificacao.html");
+
+            StringBuilder stringBuilder = new StringBuilder(conteudo);
+
+            stringBuilder.Replace("#mensagem#", $"O registro foi excluido com sucesso");
+
+            string conteudostring = stringBuilder.ToString();
+
+            return context.Response.WriteAsync(conteudostring);
+        }
+
+        static Task ExibirFormularioExclusaoMedicamento(HttpContext context)
+        {
+            ContextoDados contextoDados = new ContextoDados(true);
+            IRepositorioMedicamento repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contextoDados);
+
+            int id = Convert.ToInt32(context.GetRouteValue("id"));
+
+            Medicamento medicamento = repositorioMedicamento.SelecionarRegistroPorId(id);
+            string conteudo = File.ReadAllText("ModuloMedicamento/Html/Excluir.html");
+
+            StringBuilder stringBuilder = new StringBuilder(conteudo);
+
+            stringBuilder.Replace("#id#", id.ToString());
+            stringBuilder.Replace("#nome#", medicamento.Nome);
+
+            string conteudoString = stringBuilder.ToString();
+
+            return context.Response.WriteAsync(conteudoString);
+        }
+
+        static Task EditarMedicamento(HttpContext context)
+        {
+            int id = Convert.ToInt32(context.GetRouteValue("id"));
+            ContextoDados contexto = new ContextoDados(true);
+            IRepositorioMedicamento repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contexto);
+            IRepositorioFornecedor repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
+
+            string nome = context.Request.Form["nome"].ToString();
+            string descricao = context.Request.Form["descricao"].ToString();
+            int qtdEmEstoque = Convert.ToInt32(context.Request.Form["quantidade"]);
+            string idFornecedor = context.Request.Form["id_fornecedor"].ToString();
+
+            Fornecedor fornecedor = repositorioFornecedor.SelecionarRegistroPorId(Convert.ToInt32(idFornecedor));
+
+            Medicamento medicamento = new Medicamento(nome, descricao, qtdEmEstoque, fornecedor);
+
+            repositorioMedicamento.EditarRegistro(id, medicamento);
+
+            string conteudo = File.ReadAllText("Compartilhado/Html/Notificacao.html");
+
+            StringBuilder stringBuilder = new StringBuilder(conteudo);
+
+            stringBuilder.Replace("#mensagem#", $"O registro \"{medicamento.Nome}\" foi editado com sucesso");
+
+            string conteudostring = stringBuilder.ToString();
+            return context.Response.WriteAsync(conteudostring);
+        }
+
+        static Task ExibirFormularioEdicaoMedicamento(HttpContext context)
+        {
+            ContextoDados contexto = new ContextoDados(true);
+            IRepositorioMedicamento repositorioFuncionario = new RepositorioMedicamentoEmArquivo(contexto);
+
+            int id = Convert.ToInt32(context.GetRouteValue("id"));
+
+            Medicamento medicamento = repositorioFuncionario.SelecionarRegistroPorId(id);
+            string conteudo = File.ReadAllText("ModuloMedicamento/Html/Editar.html");
+
+            StringBuilder stringBuilder = new StringBuilder(conteudo);
+
+            stringBuilder.Replace("#id#", medicamento.Id.ToString());
+            stringBuilder.Replace("#nome#", medicamento.Nome);
+            stringBuilder.Replace("#descricao#", medicamento.Descricao);
+            stringBuilder.Replace("#quantidade#", medicamento.QtdEmEstoque.ToString());
+            stringBuilder.Replace("#id_fornecedor#", medicamento.Fornecedor.Id.ToString());
+
+            string conteudostring = stringBuilder.ToString();
+
+            return context.Response.WriteAsync(conteudostring);
+        }
+
+        static Task CadastrarMedicamento(HttpContext context)
+        {
+            ContextoDados contexto = new ContextoDados(true);
+            IRepositorioMedicamento repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contexto);
+            IRepositorioFornecedor repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
+
+            string nome = context.Request.Form["nome"].ToString();
+            string descricao = context.Request.Form["descricao"].ToString();
+            int qtdEmEstoque = Convert.ToInt32(context.Request.Form["quantidade"]);
+            string idFornecedor = context.Request.Form["id_fornecedor"].ToString();
+
+            Fornecedor fornecedor = repositorioFornecedor.SelecionarRegistroPorId(Convert.ToInt32(idFornecedor));
+
+            Medicamento medicamento = new Medicamento(nome, descricao,qtdEmEstoque, fornecedor);
+
+            repositorioMedicamento.CadastrarRegistro(medicamento);
+
+            string conteudo = File.ReadAllText("Compartilhado/Html/Notificacao.html");
+
+            StringBuilder stringBuilder = new StringBuilder(conteudo);
+
+            stringBuilder.Replace("#mensagem#", $"O registro \"{fornecedor.Nome}\" foi cadastrado com sucesso");
+
+            string conteudostring = stringBuilder.ToString();
+
+            return context.Response.WriteAsync(conteudostring);
+        }
+
+        static Task ExibirFormularioCadastroMedicamento(HttpContext context)
+        {
+            string conteudo = File.ReadAllText("ModuloMedicamento/Html/Cadastrar.html");
+            return context.Response.WriteAsync(conteudo);
         }
 
         static Task ExcluirFuncionario(HttpContext context)
@@ -299,8 +430,27 @@ namespace ControleDeMedicamentos.ConsoleApp
 
         static Task VisualizarMedicamentos(HttpContext context)
         {
+            ContextoDados contextoDados = new ContextoDados(true);
+            IRepositorioMedicamento repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contextoDados);
+
             string conteudo = File.ReadAllText("ModuloMedicamento/Html/Visualizar.html");
-            return context.Response.WriteAsync(conteudo);
+
+            StringBuilder stringBuilder = new StringBuilder(conteudo);
+
+            List<Medicamento> medicamentos = repositorioMedicamento.SelecionarRegistros();
+
+            foreach (Medicamento f in medicamentos)
+            {
+                string itemLista = $"<li>{f.ToString()} / <a href=\"/medicamentos/editar/{f.Id}\">Editar</a> / <a href=\"/medicamentos/excluir/{f.Id}\">Excluir</a> </li> #medicamento#";
+
+                stringBuilder.Replace("#medicamento#", itemLista);
+            }
+
+            stringBuilder.Replace("#medicamento#", "");
+
+            string conteudoString = stringBuilder.ToString();
+
+            return context.Response.WriteAsync(conteudoString);
         }
 
         static Task VisualizarFuncionarios(HttpContext context)

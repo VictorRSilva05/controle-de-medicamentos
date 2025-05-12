@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cadastro de Medicamento - Gestão de Medicamentos</title>
+
+</head>
+<body>
+    <h1>Gestão de Medicamentos</h1>
+
+    <h3>Cadastro de Medicamento</h3>
+
+    <form action="/medicamentos/cadastrar" method="post">
+        <label>Nome do Medicamento</label>
+        <input type="text" name="nome" required />
+        <br />
+        <label>Descrição do Medicamento</label>
+        <input type="text" name="descricao" required />
+        <br />
+        <label>Quantidade do Medicamento</label>
+        <input type="number" name="quantidade" required />
+        <br />
+        <label>Id do Fornecedor</label>
+        <input type="text" name="id_fornecedor" required />
+        <hr />
+
+        <button type="submit">Gravar</button>
+    </form>
+</body>
+</html>

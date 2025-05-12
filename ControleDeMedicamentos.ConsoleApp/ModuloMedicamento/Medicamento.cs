@@ -59,7 +59,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
 
         public override string ToString()
         {
-            return Nome + " - " + Dosagem + " - " + Periodo;
+            return Nome + " - " + QtdEmEstoque + " - " + Fornecedor.Nome + " - " + Dosagem + " - " + Periodo;
         }
 
         public void ReceitarRemedio(string dosagem, string periodo)
