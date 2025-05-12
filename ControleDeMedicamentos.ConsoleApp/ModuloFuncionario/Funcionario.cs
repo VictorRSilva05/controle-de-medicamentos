@@ -46,4 +46,9 @@ public class Funcionario : EntidadeBase<Funcionario>
 
         return erros.Trim();
     }
+
+    public override string ToString()
+    {
+        return $"{Nome} - {Telefone} - {CPF}";
+    }
 }
