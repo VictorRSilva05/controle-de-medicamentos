@@ -56,7 +56,6 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
             return erros.Trim();
         }
 
-
         public void AdicionarMedicamento(Medicamento medicamento)
         {
             if (Medicamentos == null)
@@ -64,6 +63,11 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
 
             if (!Medicamentos.Contains(medicamento))
                 Medicamentos.Add(medicamento);
+        }
+
+        public override string ToString()
+        {
+            return $"{Nome} - {Telefone} - {CNPJ}";
         }
     }
 }
