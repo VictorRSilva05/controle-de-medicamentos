@@ -12,7 +12,7 @@ namespace ControleDeMedicamentos.ConsoleApp
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers(); 
+            builder.Services.AddControllersWithViews(); 
 
             WebApplication app = builder.Build();
 
@@ -32,6 +32,7 @@ namespace ControleDeMedicamentos.ConsoleApp
             app.MapGet("/funcionarios/excluir/{id:int}", ExibirFormularioExclusaoFuncionario);
             app.MapPost("/funcionarios/excluir/{id:int}", ExcluirFuncionario);
 
+            app.UseRouting();
             app.MapControllers();
             app.Run();
         }

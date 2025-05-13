@@ -1,0 +1,25 @@
+﻿@using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
+@{
+    List<Fornecedor> fornecedores = ViewBag.Fornecedores;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Fornecedores</title>
+</head>
+<body>
+    <h1>Controle de Fornecedores</h1>
+    <a href="/fornecedores/cadastrar">Cadastrar Fornecedor</a>
+
+    <h3>Visualização de Fornecedores</h3>
+
+    <ul>
+        @foreach (Fornecedor f in fornecedores)
+        {
+            <li>@f.ToString() / <a href="/fornecedores/editar/@f.Id">Editar</a> /
+                <a href="/fornecedores/excluir/@f.Id">Excluir</a> </li>
+        }
+    </ul>
+</body>
+</html>
