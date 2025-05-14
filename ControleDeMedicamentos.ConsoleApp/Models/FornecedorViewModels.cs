@@ -1,4 +1,5 @@
-﻿using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
+﻿using ControleDeMedicamentos.ConsoleApp.Extensoes;
+using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 
 namespace ControleDeMedicamentos.ConsoleApp.Models
 {
@@ -15,7 +16,8 @@ namespace ControleDeMedicamentos.ConsoleApp.Models
         {
             foreach(Fornecedor fornecedor in fornecedores)
             {
-                Fornecedores.Add(new DetalhesFornecedorViewModel(fornecedor.Id, fornecedor.Nome, fornecedor.Telefone, fornecedor.CNPJ));
+                DetalhesFornecedorViewModel detalhesVM = fornecedor.ParaDetalhesVM();
+                Fornecedores.Add(detalhesVM);
             }
         }
     }

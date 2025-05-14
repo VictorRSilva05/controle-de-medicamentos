@@ -3,6 +3,7 @@ using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 using Microsoft.AspNetCore.Mvc;
 using ControleDeMedicamentos.ConsoleApp.Models;
 using System.Text;
+using ControleDeMedicamentos.ConsoleApp.Extensoes;
 
 namespace ControleDeMedicamentos.ConsoleApp.Controllers;
 
@@ -17,7 +18,9 @@ public class ControladorFornecedor : Controller
 
         List<Fornecedor> fornecedores = repositorioFornecedor.SelecionarRegistros();
 
-        return View("Visualizar", fornecedores);
+        VisualizarFornecedoresViewModel visualizarFornecedoresViewModel = new VisualizarFornecedoresViewModel(fornecedores);
+
+        return View("Visualizar", visualizarFornecedoresViewModel);
     }
 
     [HttpPost("cadastrar")]
@@ -26,7 +29,7 @@ public class ControladorFornecedor : Controller
         ContextoDados contexto = new ContextoDados(true);
         IRepositorioFornecedor repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
 
-        Fornecedor fornecedor = new Fornecedor(fornecedorViewModel.Nome, fornecedorViewModel.Telefone, fornecedorViewModel.CNPJ);
+        Fornecedor fornecedor = fornecedorViewModel.ParaEntidade();
 
         repositorioFornecedor.CadastrarRegistro(fornecedor);
 
