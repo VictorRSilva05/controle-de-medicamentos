@@ -65,9 +65,6 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFornecedor
                 Medicamentos.Add(medicamento);
         }
 
-        public override string ToString()
-        {
-            return $"{Nome} - {Telefone} - {CNPJ}";
-        }
+
     }
 }

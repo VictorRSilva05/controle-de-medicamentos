@@ -1,6 +1,7 @@
 ﻿using ControleDeMedicamentos.ConsoleApp.Compartilhado;
 using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 using Microsoft.AspNetCore.Mvc;
+using ControleDeMedicamentos.ConsoleApp.Models;
 using System.Text;
 
 namespace ControleDeMedicamentos.ConsoleApp.Controllers;
@@ -16,22 +17,20 @@ public class ControladorFornecedor : Controller
 
         List<Fornecedor> fornecedores = repositorioFornecedor.SelecionarRegistros();
 
-        ViewBag.Fornecedores = fornecedores;
-
-        return View("Visualizar");
+        return View("Visualizar", fornecedores);
     }
 
     [HttpPost("cadastrar")]
-    public IActionResult CadastrarFornecedor([FromForm]string nome, [FromForm] string telefone, [FromForm] string cnpj)
+    public IActionResult CadastrarFornecedor(CadastrarFornecedorViewModel fornecedorViewModel)
     {
         ContextoDados contexto = new ContextoDados(true);
         IRepositorioFornecedor repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
 
-        Fornecedor fornecedor = new Fornecedor(nome, telefone, cnpj);
+        Fornecedor fornecedor = new Fornecedor(fornecedorViewModel.Nome, fornecedorViewModel.Telefone, fornecedorViewModel.CNPJ);
 
         repositorioFornecedor.CadastrarRegistro(fornecedor);
 
-        ViewBag.Mensagem =  $"O registro \"{fornecedor.Nome}\" foi cadastrado com sucesso";
+        ViewBag.Mensagem =  $"O registro \"{fornecedorViewModel.Nome}\" foi cadastrado com sucesso";
 
         return View("Notificacao");
     }
@@ -39,20 +38,22 @@ public class ControladorFornecedor : Controller
     [HttpGet("cadastrar")]
     public IActionResult ExibirFormularioCadastroFornecedor()
     {
-       return View("Cadastrar");
+        CadastrarFornecedorViewModel cadastrarFornecedorViewModel = new CadastrarFornecedorViewModel();
+     
+        return View("Cadastrar", cadastrarFornecedorViewModel);
     }
 
     [HttpPost("editar/{id:int}")]
-    public IActionResult EditarFornecedor([FromRoute] int id, [FromForm] string nome, [FromForm] string telefone, [FromForm] string cnpj)
+    public IActionResult EditarFornecedor([FromRoute] int id,EditarFornecedorViewModel editarFornecedorVM)
     { 
         ContextoDados contexto = new ContextoDados(true);
         IRepositorioFornecedor repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
 
-        Fornecedor fornecedor = new Fornecedor(nome, telefone, cnpj);
+        Fornecedor fornecedor = new Fornecedor(editarFornecedorVM.Nome, editarFornecedorVM.Telefone, editarFornecedorVM.CNPJ);
 
         repositorioFornecedor.EditarRegistro(id, fornecedor);
 
-        ViewBag.Mensagem = $"O registro \"{fornecedor.Nome}\" foi editado com sucesso";
+        ViewBag.Mensagem = $"O registro \"{editarFornecedorVM.Nome}\" foi editado com sucesso";
 
         return View("Notificacao");
     }
@@ -65,9 +66,10 @@ public class ControladorFornecedor : Controller
 
         Fornecedor fornecedor = repositorioFornecedor.SelecionarRegistroPorId(id);
 
-        ViewBag.Fornecedor = fornecedor;
+        EditarFornecedorViewModel fornecedorViewModel = new EditarFornecedorViewModel(
+            id, fornecedor.Nome, fornecedor.Telefone, fornecedor.CNPJ);
 
-        return View("Editar");
+        return View("Editar", fornecedorViewModel);
     }
 
     [HttpPost("excluir/{id:int}")]
@@ -91,9 +93,10 @@ public class ControladorFornecedor : Controller
 
         Fornecedor fabricanteSelecionado = repositorioFornecedor.SelecionarRegistroPorId(id);
 
-        ViewBag.Fornecedor = fabricanteSelecionado;
+        ExcluirFornecedorViewModel excluirFornecedorViewModel = new ExcluirFornecedorViewModel(
+            fabricanteSelecionado.Id, fabricanteSelecionado.Nome);
 
-        return View("Excluir");
+        return View("Excluir", excluirFornecedorViewModel);
     }
 
 }
