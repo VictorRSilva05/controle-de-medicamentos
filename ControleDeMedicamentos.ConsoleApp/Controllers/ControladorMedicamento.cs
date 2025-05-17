@@ -52,4 +52,46 @@ public class ControladorMedicamento : Controller
         repositorioMedicamento.CadastrarRegistro(medicamento);
         return View("Notificacao", notificacaoVM);
     }
+
+    [HttpGet("editar/{id:int}")]
+    public IActionResult Editar([FromRoute]int id)
+    {
+        var contextoDados = new ContextoDados(true);
+        var repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contextoDados);
+
+        var medicamentoSelecionado = repositorioMedicamento.SelecionarRegistroPorId(id);
+
+        var fornecedores = new RepositorioFornecedorEmArquivo(contextoDados).SelecionarRegistros(); 
+
+        var editarVM = new EditarMedicamentoViewModel(
+            id,
+            medicamentoSelecionado.Nome,
+            medicamentoSelecionado.QtdEmEstoque,
+            medicamentoSelecionado.Fornecedor.Id,
+            fornecedores
+            );
+
+        return View(editarVM);
+    }
+
+    [HttpPost("editar/{id:int}")]
+    public IActionResult Editar([FromRoute] int id, EditarMedicamentoViewModel editarVM)
+    {
+        var contextoDados = new ContextoDados(true);
+        var fornecedores = new RepositorioFornecedorEmArquivo(contextoDados).SelecionarRegistros();
+        var repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contextoDados);
+
+        var medicamentoEditado = editarVM.ParaEntidade(fornecedores);
+
+        repositorioMedicamento.EditarRegistro(id,medicamentoEditado);
+
+
+        var notificacaoVM = new NotificacaoViewModel(
+            "Medicamento Cadastrado!",
+            $"O registro \"{medicamentoEditado.Nome}\" foi editado com sucesso!"
+            );
+
+        repositorioMedicamento.EditarRegistro(id,medicamentoEditado);
+        return View("Notificacao", notificacaoVM);
+    }
 }

@@ -50,8 +50,22 @@ public class EditarMedicamentoViewModel : FormularioMedicamentoViewModel
 {
     public int Id { get; set; }
     public EditarMedicamentoViewModel()
-    {
+    { 
+    }
 
+    public EditarMedicamentoViewModel(int id, string nome,int qtdEmEstoque ,int fornecedorId,List<Fornecedor> fornecedores)
+    {
+        Id = id;
+        Nome = nome;
+        QtdEmEstoque = qtdEmEstoque;
+        FornecedorId = fornecedorId;
+
+        foreach (var item in fornecedores)
+        {
+            var selecionarVM = new SelecionarFornecedorViewModel(item.Id, item.Nome);
+
+            FornecedoresDisponiveis.Add(selecionarVM);
+        }
     }
 }
 
