@@ -1,0 +1,35 @@
+﻿@using ControleDeMedicamentos.ConsoleApp.Models
+@model CadastrarMedicamentoViewModel;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cadastro de Medicamento - Gestão de Medicamentos</title>
+
+</head>
+<body>
+    <h1>Gestão de Medicamentos</h1>
+
+    <h3>Cadastro de Medicamento</h3>
+
+    <form action="/medicamentos/cadastrar" method="post">
+        <br />
+        <label for="Nome">Nome do medicamento</label>
+        <input type="text" name="Nome" id="Nome" />
+        <br />
+        <label for="QtdEmEstoque">Quantidade</label>
+        <input type="text" name="QtdEmEstoque" id="QtdEmEstoque" />
+        <br />
+        <label for="FornecedorId">Fornecedor</label>
+        <select name="FornecedorId" id="FornecedorId">
+            @foreach(var fornecedor in Model.FornecedoresDisponiveis)
+            {
+                <option value="@fornecedor.Id">@fornecedor.Nome</option>
+            }
+        </select>
+        <hr />
+        <button type="submit">Gravar</button>
+    </form>
+</body>
+</html>

@@ -21,6 +21,12 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloMedicamento
             Fornecedor = fornecedor;
         }
 
+        public Medicamento(string nome, int qtdEmEstoque, Fornecedor fornecedor)
+        {
+            Nome = nome;
+            QtdEmEstoque = qtdEmEstoque;
+            Fornecedor = fornecedor;
+        }
         public Medicamento()
         {
         }
