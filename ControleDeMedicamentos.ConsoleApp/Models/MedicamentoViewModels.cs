@@ -104,4 +104,16 @@ public class DetalhesMedicamentoViewModel
     {
         return $"Medicamento: {Nome}, Qtd em Estoque: {QtdEmEstoque}, Fornecedor: {NomeFornecedor}";
     }
+
+    public class ExcluirMedicamentoViewModel
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+ 
+        public ExcluirMedicamentoViewModel(int id, string nome)
+        {
+            Id = id;
+            Nome = nome;
+        }
+    }
 }

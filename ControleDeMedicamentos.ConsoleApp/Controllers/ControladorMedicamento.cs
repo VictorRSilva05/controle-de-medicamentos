@@ -4,6 +4,7 @@ using ControleDeMedicamentos.ConsoleApp.Models;
 using ControleDeMedicamentos.ConsoleApp.ModuloFornecedor;
 using ControleDeMedicamentos.ConsoleApp.ModuloMedicamento;
 using Microsoft.AspNetCore.Mvc;
+using static ControleDeMedicamentos.ConsoleApp.Models.DetalhesMedicamentoViewModel;
 
 namespace ControleDeMedicamentos.ConsoleApp.Controllers;
 
@@ -54,14 +55,14 @@ public class ControladorMedicamento : Controller
     }
 
     [HttpGet("editar/{id:int}")]
-    public IActionResult Editar([FromRoute]int id)
+    public IActionResult Editar([FromRoute] int id)
     {
         var contextoDados = new ContextoDados(true);
         var repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contextoDados);
 
         var medicamentoSelecionado = repositorioMedicamento.SelecionarRegistroPorId(id);
 
-        var fornecedores = new RepositorioFornecedorEmArquivo(contextoDados).SelecionarRegistros(); 
+        var fornecedores = new RepositorioFornecedorEmArquivo(contextoDados).SelecionarRegistros();
 
         var editarVM = new EditarMedicamentoViewModel(
             id,
@@ -83,7 +84,7 @@ public class ControladorMedicamento : Controller
 
         var medicamentoEditado = editarVM.ParaEntidade(fornecedores);
 
-        repositorioMedicamento.EditarRegistro(id,medicamentoEditado);
+        repositorioMedicamento.EditarRegistro(id, medicamentoEditado);
 
 
         var notificacaoVM = new NotificacaoViewModel(
@@ -91,7 +92,32 @@ public class ControladorMedicamento : Controller
             $"O registro \"{medicamentoEditado.Nome}\" foi editado com sucesso!"
             );
 
-        repositorioMedicamento.EditarRegistro(id,medicamentoEditado);
+        repositorioMedicamento.EditarRegistro(id, medicamentoEditado);
+        return View("Notificacao", notificacaoVM);
+    }
+
+    [HttpGet("excluir/{id:int}")]
+    public IActionResult Excluir([FromRoute] int id)
+    {
+        var medicamentoSelecionado = new RepositorioMedicamentoEmArquivo(new ContextoDados(true)).SelecionarRegistroPorId(id);
+
+        var excluirVM = new ExcluirMedicamentoViewModel(id, medicamentoSelecionado.Nome);
+
+        return View(excluirVM);
+    }
+
+    [HttpPost("excluir/{id:int}")]
+    public IActionResult ExcluirConfirmado([FromRoute] int id)
+    {
+        ContextoDados contextoDados = new ContextoDados(true);
+        var repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contextoDados);
+        repositorioMedicamento.ExcluirRegistro(id);
+
+        var notificacaoVM = new NotificacaoViewModel(
+            "Medicamento Excluído!",
+            $"O registro \"{id}\" foi excluído com sucesso!"
+            );
+
         return View("Notificacao", notificacaoVM);
     }
 }
