@@ -3,16 +3,73 @@
 <head>
     <meta charset="utf-8" />
     <title>Controle de Medicamentos - Home</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 100px;
+            justify-content: space-between;
+            padding:0 200px;
+        }
+
+            nav > h2 {
+                margin: 0;
+            }
+
+            nav > ul {
+                display: flex;
+                gap: 30px;
+                list-style: none;
+            }
+
+        header {
+           padding: 0 200px;
+        }
+        main {
+            padding: 0 200px;
+            display: flex; 
+            gap: 30px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card{
+            border: 1px solid white;
+            padding: 0 10px;
+            width: 350px;
+            height: 150px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Controle de Medicamentos</h1>
+    <nav>
+        <h2>Controle de Medicamentos</h2>
+        <ul>
+            <li><a href="/">Pagina Inicial</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h3>Página inicial</h3>
+    </header>
+    <main>
+        <h3>Módulos</h3>
 
-    <h3>Módulos</h3>
+        <ul>
+            <div class="card">
+            <li><a href="fornecedores/visualizar">Fornecedor</a></li>
+            </div>
 
-    <ul>
-        <li><a href="fornecedores/visualizar">Fornecedor</a></li>
-        <li><a href="medicamentos/visualizar">Medicamento</a></li>
-        <li><a href="funcionarios/visualizar">Funcionário</a></li>
-    </ul>
+            <div class="card">
+            <li><a href="medicamentos/visualizar">Medicamento</a></li>
+            </div>
+            <div class="card">
+            <li><a href="funcionarios/visualizar">Funcionário</a></li></div>
+        </ul>
+    </main>
 </body>
 </html>
